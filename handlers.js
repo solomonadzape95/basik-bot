@@ -19,7 +19,7 @@ export const handleStart = (bot) => (msg) => {
 🚀 *Welcome, ${name}!* 🚀
 
 I'm Basik your Base Onboarding Assistant. Let's get you onchain!
-Use the custom keyboard below to explore what I can do for you.
+Use the menu below to explore what I can do for you.
   `;
   bot
     .sendMessage(chatId, welcomeMessage, {
@@ -63,7 +63,7 @@ export const handleDocs = (bot) => async (msg) => {
 
 Base is a Layer 2 (L2) scaling solution for Ethereum, designed to improve transaction speed and reduce costs. It utilizes optimistic rollups to process transactions off the Ethereum mainnet while maintaining Ethereum's security and compatibility.
 
-# Key Features
+ *Key Features*
 
 1. **Technology**: Optimistic Rollup chain
 2. **Development**: Initially developed by Coinbase
@@ -75,11 +75,11 @@ Base is a Layer 2 (L2) scaling solution for Ethereum, designed to improve transa
 
 ${name}, here are some fantastic resources to get you started on Base:
 
-🔗 [Getting Started Guide](https://base.org/)
+🔗 [Official Site](https://base.org/)
    From zero to hero in no time!
    
-🔗 [Official Docs](https://docs.base.org/)
-   Your go-to guide for all things L2!
+🔗 [Documentation](https://docs.base.org/)
+   Your go-to guide for all things Base
 
 🔗 [API Reference](https://docs.alchemy.com/reference/base-api-quickstart)
    For when you're ready to build!
@@ -113,16 +113,16 @@ export const handleCommunity = (bot) => async (msg) => {
 
 Connect with fellow enthusiasts and get support:
 
-🔹 [Whatsapp](https://reddit.com/r/l2example)
-   Dive into discussions and tutorials!
-
 🔹 [Twitter](https://x.com/baseafricaa?s=21)
    Stay updated with the latest news!
+
+🔹 [Whatsapp](https://chat.whatsapp.com/BTuM7DtNZiIHmwf2T5txc8)
+   Dive into discussions and tutorials!
 
 🔹 [Discord](https://discord.gg/JNTUSasX)
    Real-time chats and instant help!
    
-🔹 [Telegram](https://discord.gg/JNTUSasX)
+🔹 [Telegram](https://discord.gg/QSHrmsch)
    Real-time chats and instant help!
 
 We can't wait to meet you! 🎉
@@ -147,21 +147,7 @@ We can't wait to meet you! 🎉
     handleError(bot, chatId, error);
   }
 };
-export const handleAmaka=(bot) => async(msg)=>{
-  const name = msg.from.first_name;
-  const chatId = msg.chat.id;
-  const response = `
-  Oh hi ${name},👋
-  How goes it?
-  No need to respond, just wanted to show you this...`
-  try{
-    bot.sendMessage(chatId,response,{parse_mode: 'Markdown'})
-    const stickerId = ''
-    await bot.sendSticker(chatId, stickerId)
-  }catch(error){
-    handleError(bot,chatId,error)
-  }
-}
+
 export const handleUnrecognized = (bot) => async (msg) => {
   const chatId = msg.chat.id;
   if (msg.text &&
