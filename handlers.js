@@ -1,0 +1,191 @@
+// handlers.js
+import fs from "fs";
+import path from "path";
+import { DateTime } from "luxon";
+
+const mainMenu = {
+  reply_markup: {
+    keyboard: [
+      ["🤔 What is Base", "🤝 Community"],
+      ["🆘 Help"],
+    ],
+    resize_keyboard: true,
+    one_time_keyboard: false,
+  },
+};
+
+export const handleStart = (bot) => (msg) => {
+  const chatId = msg.chat.id;
+  const name = msg.from.first_name;
+  const welcomeMessage = `
+🚀 *Welcome, ${name}!* 🚀
+
+I'm Basik your Base Onboarding Assistant. Let's get you onchain!
+Use the custom keyboard below to explore what I can do for you.
+  `;
+  bot
+    .sendMessage(chatId, welcomeMessage, {
+      parse_mode: "Markdown",
+      ...mainMenu,
+    })
+    .then(() => {
+      const stickerId =
+        "CAACAgIAAxkBAAEMnnRmtEcsy7ykO2WIFtpwBFJLr1EWIAACMTQAAugboErSr6fEZiaivDUE";
+      return bot.sendSticker(chatId, stickerId);
+    })
+    .catch((error) => handleError(bot, chatId, error));
+};
+
+export const handleHelp = (bot) => async (msg) => {
+  const chatId = msg.chat.id;
+  const name = msg.from.first_name;
+  const helpMessage = `
+Hey ${name}! Here's how I can help you:
+
+🤔 What is Base - Learn about Base
+🤝 Community - Join our vibrant community
+🆘 Help - See this help message again
+
+What would you like to know more about?
+  `;
+  try{
+    await bot.sendMessage(chatId, helpMessage, { parse_mode: "Markdown", ...mainMenu });
+     const stickerId =
+      "CAACAgIAAxkBAAEMnoRmtFLleC3c62dM5fdDpNFGPUDKLQAC5zUAAraMQUtiZhcFq2C8BjUE";
+    await bot.sendSticker(chatId, stickerId);
+  }catch(error){
+    handleError(bot, chatId, error);
+}};
+
+export const handleDocs = (bot) => async (msg) => {
+  const chatId = msg.chat.id;
+  const name = msg.from.first_name;
+  const docsMessage = `
+🔵 *What is Base* 🔵
+
+Base is a Layer 2 (L2) scaling solution for Ethereum, designed to improve transaction speed and reduce costs. It utilizes optimistic rollups to process transactions off the Ethereum mainnet while maintaining Ethereum's security and compatibility.
+
+## Key Features
+
+1. **Technology**: Optimistic Rollup chain
+2. **Development**: Initially developed by Coinbase
+3. **Purpose**: Faster and cheaper transactions while maintaining Ethereum compatibility
+4. **Open-source**: Designed as a collaborative, open-source project
+5. **Integration**: Closely integrated with Coinbase's products
+6. **Ecosystem**: Supports various dApps and aims to foster a growing ecosystem
+7. **Interoperability**: Designed to work well with other L2 solutions and the Ethereum ecosystem
+
+${name}, here are some fantastic resources to get you started on Base:
+
+🔗 [Getting Started Guide](https://base.org/)
+   From zero to hero in no time!
+   
+🔗 [Official Docs](https://docs.base.org/)
+   Your go-to guide for all things L2!
+
+🔗 [API Reference](https://docs.alchemy.com/reference/base-api-quickstart)
+   For when you're ready to build!
+
+Happy learning! 🧠✨
+  `;
+
+  try {
+    await bot.sendMessage(chatId, docsMessage, {
+      parse_mode: "Markdown",
+      ...mainMenu,
+    });
+        const stickerId =
+      "CAACAgIAAxkBAAEMnoJmtFK-YgAB8HWFjBBInRf1llkVFXoAAsM9AALMEylKhQ_NmhqKA0Y1BA";
+    await bot.sendSticker(chatId, stickerId);
+  } 
+    // const imagePath = path.join(process.cwd(), "assets", "base.jpg");
+    // await bot.sendPhoto(chatId, imagePath, {
+    //   caption: "Base Network",
+    // });
+    catch (error) {
+    handleError(bot, chatId, error);
+  }
+};
+
+export const handleCommunity = (bot) => async (msg) => {
+  const chatId = msg.chat.id;
+  const name = msg.from.first_name;
+  const communityMessage = `
+🌟 *Join Our Amazing Base Community, ${name}!* 🌟
+
+Connect with fellow enthusiasts and get support:
+
+🔹 [Whatsapp](https://reddit.com/r/l2example)
+   Dive into discussions and tutorials!
+
+🔹 [Twitter](https://x.com/baseafricaa?s=21)
+   Stay updated with the latest news!
+
+🔹 [Discord](https://discord.gg/JNTUSasX)
+   Real-time chats and instant help!
+   
+🔹 [Telegram](https://discord.gg/JNTUSasX)
+   Real-time chats and instant help!
+
+We can't wait to meet you! 🎉
+  `;
+
+  try {
+    await bot.sendMessage(chatId, communityMessage, {
+      parse_mode: "Markdown",
+      ...mainMenu,
+    });
+
+    // const imagePath = path.join(process.cwd(), "assets", "images.jpg");
+    // await bot.sendPhoto(chatId, imagePath, {
+    //   caption: "Our vibrant community awaits you!",
+    // });
+
+
+    const stickerId =
+      "CAACAgIAAxkBAAEMnnZmtEf3kWWENhEZrR9EIn36Vi-B2AACEjUAAsenoUqpHiuzlnPN-jUE";
+    await bot.sendSticker(chatId, stickerId);
+  } catch (error) {
+    handleError(bot, chatId, error);
+  }
+};
+
+export const handleUnrecognized = (bot) => async (msg) => {
+  const chatId = msg.chat.id;
+  if (msg.text &&
+    (msg.text.startsWith("/") ||
+      [
+        "🤔 What is Base",
+        "🤝 Community",
+        "🆘 Help",
+      ].includes(msg.text))
+  ) return
+  const unrecognizedMessage = `
+I'm sorry, but I didn't understand that input. 
+Please use the custom keyboard or these commands:
+
+/start - Open the main menu
+/help - Open the help menu
+
+Please choose one of these options or ask a more specific question about Base.
+  `;
+
+  try{
+    await bot.sendMessage(chatId, unrecognizedMessage, { ...mainMenu });
+     const stickerId =
+      "CAACAgIAAxkBAAEMnoZmtFPq6jKR0wSKZ8lAMryV2u4m-QAC1DAAApkwoUoENX02s8n9lTUE";
+    await bot.sendSticker(chatId, stickerId);
+}
+    catch(error){ handleError(bot, chatId, error)};
+};
+
+export const handleError = (bot, chatId, error) => {
+  console.error("Error:", error);
+  bot
+    .sendMessage(
+      chatId,
+      "I'm sorry, but I encountered an error. Please try again later or contact support.",
+      { ...mainMenu }
+    )
+    .catch(console.error);
+};

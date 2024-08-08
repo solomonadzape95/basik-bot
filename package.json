@@ -1,0 +1,21 @@
+{
+  "name": "tg-bot",
+  "version": "1.0.0",
+  "description": "sample telegram bot",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.7.3",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "heroku": "^9.1.0",
+    "luxon": "^3.5.0",
+    "node-telegram-bot-api": "^0.66.0"
+  }
+}
