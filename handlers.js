@@ -1,7 +1,5 @@
-// handlers.js
 import fs from "fs";
 import path from "path";
-import { DateTime } from "luxon";
 
 const mainMenu = {
   reply_markup: {
@@ -167,7 +165,6 @@ Please use the custom keyboard or these commands:
 /start - Open the main menu
 /help - Open the help menu
 
-Please choose one of these options or ask a more specific question about Base.
   `;
 
   try{
