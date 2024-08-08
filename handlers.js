@@ -1,5 +1,5 @@
 import fs from "fs";
-import path from "path";
+import path, { basename } from "path";
 
 const mainMenu = {
   reply_markup: {
@@ -63,7 +63,7 @@ export const handleDocs = (bot) => async (msg) => {
 
 Base is a Layer 2 (L2) scaling solution for Ethereum, designed to improve transaction speed and reduce costs. It utilizes optimistic rollups to process transactions off the Ethereum mainnet while maintaining Ethereum's security and compatibility.
 
-## Key Features
+# Key Features
 
 1. **Technology**: Optimistic Rollup chain
 2. **Development**: Initially developed by Coinbase
@@ -147,7 +147,21 @@ We can't wait to meet you! 🎉
     handleError(bot, chatId, error);
   }
 };
-
+export const handleAmaka=(bot) => async(msg)=>{
+  const name = msg.from.first_name;
+  const chatId = msg.chat.id;
+  const response = `
+  Oh hi ${name},👋
+  How goes it?
+  No need to respond, just wanted to show you this...`
+  try{
+    bot.sendMessage(chatId,response,{parse_mode: 'Markdown'})
+    const stickerId = ''
+    await bot.sendSticker(chatId, stickerId)
+  }catch(error){
+    handleError(bot,chatId,error)
+  }
+}
 export const handleUnrecognized = (bot) => async (msg) => {
   const chatId = msg.chat.id;
   if (msg.text &&
@@ -156,6 +170,7 @@ export const handleUnrecognized = (bot) => async (msg) => {
         "🤔 What is Base",
         "🤝 Community",
         "🆘 Help",
+        "amaka"
       ].includes(msg.text))
   ) return
   const unrecognizedMessage = `
