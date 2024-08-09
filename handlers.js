@@ -12,7 +12,7 @@ const mainMenu = {
   },
 };
 
-export const handleStart = (bot) => (msg) => {
+export const handleStart = (bot) => async (msg) => {
   const chatId = msg.chat.id;
   const name = msg.from.first_name;
   const welcomeMessage = `
@@ -21,18 +21,18 @@ export const handleStart = (bot) => (msg) => {
 I'm Basik your Base Onboarding Assistant. Let's get you onchain!
 Use the menu below to explore what I can do for you.
   `;
-  bot
-    .sendMessage(chatId, welcomeMessage, {
+  try {
+    await bot.sendMessage(chatId, welcomeMessage, {
       parse_mode: "Markdown",
       ...mainMenu,
     })
-    .then(() => {
-      const stickerId =
+     const stickerId =
         "CAACAgIAAxkBAAEMnnRmtEcsy7ykO2WIFtpwBFJLr1EWIAACMTQAAugboErSr6fEZiaivDUE";
-      return bot.sendSticker(chatId, stickerId);
-    })
-    .catch((error) => handleError(bot, chatId, error));
-};
+      await bot.sendSticker(chatId, stickerId);
+  } catch (error) {
+    handleError(bot, chatId, error);
+  }
+}
 
 export const handleHelp = (bot) => async (msg) => {
   const chatId = msg.chat.id;
