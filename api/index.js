@@ -45,7 +45,4 @@ export default async function handler(req, res) {
     res.status(200).json({ message: "Webhook is set up correctly!" });
   }
 }
-bot.on("message", (msg) => {
-  const chatId = msg.chat.id;
-  bot.sendMessage(chatId, "You said: " + msg.text);
-});
+
