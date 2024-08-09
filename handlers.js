@@ -55,7 +55,7 @@ What would you like to know more about?
     handleError(bot, chatId, error);
 }};
 
-export const handleDocs = (bot) => async (msg) => {
+export const handleDocs = (bot) => (msg) => {
   const chatId = msg.chat.id;
   const name = msg.from.first_name;
   const docsMessage = `
@@ -88,13 +88,13 @@ Happy learning! 🧠✨
   `;
 
   try {
-    await bot.sendMessage(chatId, docsMessage, {
+     bot.sendMessage(chatId, docsMessage, {
       parse_mode: "Markdown",
       ...mainMenu,
     });
-        const stickerId =
-      "CAACAgIAAxkBAAEMnoJmtFK-YgAB8HWFjBBInRf1llkVFXoAAsM9AALMEylKhQ_NmhqKA0Y1BA";
-    await bot.sendSticker(chatId, stickerId);
+    //     const stickerId =
+    //   "CAACAgIAAxkBAAEMnoJmtFK-YgAB8HWFjBBInRf1llkVFXoAAsM9AALMEylKhQ_NmhqKA0Y1BA";
+    // await bot.sendSticker(chatId, stickerId);
   } 
     // const imagePath = path.join(process.cwd(), "assets", "base.jpg");
     // await bot.sendPhoto(chatId, imagePath, {
@@ -137,9 +137,9 @@ We can't wait to meet you! 🎉
     // });
 
 
-    const stickerId =
-      "CAACAgIAAxkBAAEMnnZmtEf3kWWENhEZrR9EIn36Vi-B2AACEjUAAsenoUqpHiuzlnPN-jUE";
-    bot.sendSticker(chatId, stickerId);
+    // const stickerId =
+    //   "CAACAgIAAxkBAAEMnnZmtEf3kWWENhEZrR9EIn36Vi-B2AACEjUAAsenoUqpHiuzlnPN-jUE";
+    // bot.sendSticker(chatId, stickerId);
   } catch (error) {
     handleError(bot, chatId, error);
   }
@@ -153,7 +153,6 @@ export const handleUnrecognized = (bot) => (msg) => {
         "🤔 What is Base",
         "🤝 Community",
         "🆘 Help",
-        "amaka"
       ].includes(msg.text))
   ) return
   const unrecognizedMessage = `
@@ -167,9 +166,9 @@ Please use the custom keyboard or these commands:
 
   try{
    bot.sendMessage(chatId, unrecognizedMessage, { ...mainMenu });
-     const stickerId =
-      "CAACAgIAAxkBAAEMnoZmtFPq6jKR0wSKZ8lAMryV2u4m-QAC1DAAApkwoUoENX02s8n9lTUE";
-   bot.sendSticker(chatId, stickerId);
+  //    const stickerId =
+  //     "CAACAgIAAxkBAAEMnoZmtFPq6jKR0wSKZ8lAMryV2u4m-QAC1DAAApkwoUoENX02s8n9lTUE";
+  //  bot.sendSticker(chatId, stickerId);
 }
     catch(error){ handleError(bot, chatId, error)};
 };
