@@ -12,7 +12,7 @@ const mainMenu = {
   },
 };
 
-export const handleStart = (bot) => async (msg) => {
+export const handleStart = (bot) => (msg) => {
   const chatId = msg.chat.id;
   const name = msg.from.first_name;
   const welcomeMessage = `
@@ -22,19 +22,19 @@ I'm Basik your Base Onboarding Assistant. Let's get you onchain!
 Use the menu below to explore what I can do for you.
   `;
   try {
-    await bot.sendMessage(chatId, welcomeMessage, {
+   bot.sendMessage(chatId, welcomeMessage, {
       parse_mode: "Markdown",
       ...mainMenu,
     })
      const stickerId =
         "CAACAgIAAxkBAAEMnnRmtEcsy7ykO2WIFtpwBFJLr1EWIAACMTQAAugboErSr6fEZiaivDUE";
-      await bot.sendSticker(chatId, stickerId);
+      bot.sendSticker(chatId, stickerId);
   } catch (error) {
     handleError(bot, chatId, error);
   }
 }
 
-export const handleHelp = (bot) => async (msg) => {
+export const handleHelp = (bot) => (msg) => {
   const chatId = msg.chat.id;
   const name = msg.from.first_name;
   const helpMessage = `
@@ -47,10 +47,10 @@ Hey ${name}! Here's how I can help you:
 What would you like to know more about?
   `;
   try{
-    await bot.sendMessage(chatId, helpMessage, { parse_mode: "Markdown", ...mainMenu });
+     bot.sendMessage(chatId, helpMessage, { parse_mode: "Markdown", ...mainMenu });
      const stickerId =
       "CAACAgIAAxkBAAEMnoRmtFLleC3c62dM5fdDpNFGPUDKLQAC5zUAAraMQUtiZhcFq2C8BjUE";
-    await bot.sendSticker(chatId, stickerId);
+     bot.sendSticker(chatId, stickerId);
   }catch(error){
     handleError(bot, chatId, error);
 }};
@@ -105,7 +105,7 @@ Happy learning! 🧠✨
   }
 };
 
-export const handleCommunity = (bot) => async (msg) => {
+export const handleCommunity = (bot) => (msg) => {
   const chatId = msg.chat.id;
   const name = msg.from.first_name;
   const communityMessage = `
@@ -126,7 +126,7 @@ We can't wait to meet you! 🎉
   `;
 
   try {
-    await bot.sendMessage(chatId, communityMessage, {
+    bot.sendMessage(chatId, communityMessage, {
       parse_mode: "Markdown",
       ...mainMenu,
     });
@@ -139,13 +139,13 @@ We can't wait to meet you! 🎉
 
     const stickerId =
       "CAACAgIAAxkBAAEMnnZmtEf3kWWENhEZrR9EIn36Vi-B2AACEjUAAsenoUqpHiuzlnPN-jUE";
-    await bot.sendSticker(chatId, stickerId);
+    bot.sendSticker(chatId, stickerId);
   } catch (error) {
     handleError(bot, chatId, error);
   }
 };
 
-export const handleUnrecognized = (bot) => async (msg) => {
+export const handleUnrecognized = (bot) => (msg) => {
   const chatId = msg.chat.id;
   if (msg.text &&
     (msg.text.startsWith("/") ||
@@ -166,10 +166,10 @@ Please use the custom keyboard or these commands:
   `;
 
   try{
-    await bot.sendMessage(chatId, unrecognizedMessage, { ...mainMenu });
+   bot.sendMessage(chatId, unrecognizedMessage, { ...mainMenu });
      const stickerId =
       "CAACAgIAAxkBAAEMnoZmtFPq6jKR0wSKZ8lAMryV2u4m-QAC1DAAApkwoUoENX02s8n9lTUE";
-    await bot.sendSticker(chatId, stickerId);
+   bot.sendSticker(chatId, stickerId);
 }
     catch(error){ handleError(bot, chatId, error)};
 };
