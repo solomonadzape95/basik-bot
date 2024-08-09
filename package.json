@@ -2,11 +2,11 @@
   "name": "tg-bot",
   "version": "1.0.0",
   "description": "sample telegram bot",
-  "main": "index.js",
+  "main": "api/index.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index"
+    "start": "node api/index"
   },
   "author": "",
   "license": "ISC",
