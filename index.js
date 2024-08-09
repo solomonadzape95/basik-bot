@@ -39,10 +39,10 @@ bot.onText(/🤔 What is Base/, handleDocs(bot));
 bot.onText(/\/community/, handleCommunity(bot));
 bot.onText(/🤝 Community/, handleCommunity(bot));
 bot.on("message", handleUnrecognized(bot));
-bot.getWebhookInfo()
-  .then((info) => {
-    console.log("Webhook info:", info);
-  })
-  .catch((error) => {
-    console.error("Failed to get webhook info:", error);
-  });
+// bot.getWebhookInfo()
+//   .then((info) => {
+//     console.log("Webhook info:", info);
+//   })
+//   .catch((error) => {
+//     console.error("Failed to get webhook info:", error);
+//   });
