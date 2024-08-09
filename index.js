@@ -39,8 +39,7 @@ bot.onText(/🤔 What is Base/, handleDocs(bot));
 bot.onText(/\/community/, handleCommunity(bot));
 bot.onText(/🤝 Community/, handleCommunity(bot));
 bot.on("message", handleUnrecognized(bot));
-bot
-  .getWebhookInfo()
+bot.getWebhookInfo()
   .then((info) => {
     console.log("Webhook info:", info);
   })
