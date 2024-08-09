@@ -6,7 +6,7 @@ import {
   handleDocs,
   handleCommunity,
   handleUnrecognized,
-} from "../handlers.js";
+} from "./handlers.js";
 
 dotenv.config();
 
