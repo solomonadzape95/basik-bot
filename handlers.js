@@ -34,7 +34,7 @@ Use the menu below to explore what I can do for you.
     .catch((error) => handleError(bot, chatId, error));
 };
 
-export const handleHelp = (bot) => (msg) => {
+export const handleHelp = (bot) => async (msg) => {
   const chatId = msg.chat.id;
   const name = msg.from.first_name;
   const helpMessage = `
@@ -47,10 +47,10 @@ Hey ${name}! Here's how I can help you:
 What would you like to know more about?
   `;
   try{
-     bot.sendMessage(chatId, helpMessage, { parse_mode: "Markdown", ...mainMenu });
+    await bot.sendMessage(chatId, helpMessage, { parse_mode: "Markdown", ...mainMenu });
      const stickerId =
       "CAACAgIAAxkBAAEMnoRmtFLleC3c62dM5fdDpNFGPUDKLQAC5zUAAraMQUtiZhcFq2C8BjUE";
-     bot.sendSticker(chatId, stickerId);
+    await bot.sendSticker(chatId, stickerId);
   }catch(error){
     handleError(bot, chatId, error);
 }};
