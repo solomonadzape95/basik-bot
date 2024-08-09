@@ -122,9 +122,6 @@ Connect with fellow enthusiasts and get support:
 🔹 [Discord](https://discord.gg/JNTUSasX)
    Real-time chats and instant help!
    
-🔹 [Telegram](https://discord.gg/QSHrmsch)
-   Real-time chats and instant help!
-
 We can't wait to meet you! 🎉
   `;
 

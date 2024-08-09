@@ -1,7 +1,6 @@
 import dotenv from "dotenv";
 import express from 'express'
 import TelegramBot from "node-telegram-bot-api";
-dotenv.config();
 import {
   handleStart,
   handleHelp,
@@ -9,17 +8,21 @@ import {
   handleCommunity,
   handleUnrecognized,
 } from "./handlers.js";
+dotenv.config();
 
 const app = express();
 app.use(express.json())
-const token = process.env.TELEGRAM_BOT_TOKEN;
-const bot = new TelegramBot(token);
-bot.setWebHook(`${process.env.BOT_URL}/bot${token}`)
-
-// bot.on("polling_error", (error) => {
-//   console.error(error);
-// });
 const PORT = process.env.PORT || 3000;
+const token = process.env.TELEGRAM_BOT_TOKEN;
+const url = process.env.BOT_URL;
+const bot = new TelegramBot(token);
+
+bot.setWebHook(`${url}/bot${token}`).then(() => {
+  console.log('Webhook set successfully')
+}).catch(error => {
+  console.error('Failed to set Webhook:'. error)
+})
+
 app.listen(PORT, () => {
   console.log(`Bot is running on port ${PORT}`)
 })
@@ -36,3 +39,11 @@ bot.onText(/🤔 What is Base/, handleDocs(bot));
 bot.onText(/\/community/, handleCommunity(bot));
 bot.onText(/🤝 Community/, handleCommunity(bot));
 bot.on("message", handleUnrecognized(bot));
+bot
+  .getWebhookInfo()
+  .then((info) => {
+    console.log("Webhook info:", info);
+  })
+  .catch((error) => {
+    console.error("Failed to get webhook info:", error);
+  });
