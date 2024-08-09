@@ -6,7 +6,7 @@ import {
   handleDocs,
   handleCommunity,
   handleUnrecognized,
-} from "./handlers.js";
+} from "../handlers.js";
 
 dotenv.config();
 
@@ -17,7 +17,7 @@ const bot = new TelegramBot(token);
 // Set webhook only when not in a Vercel environment
 if (process.env.VERCEL_ENV === undefined) {
   bot
-    .setWebHook(`${url}/api/webhook`)
+    .setWebHook(`${url}/api/index`)
     .then(() => {
       console.log("Webhook set successfully");
     })
