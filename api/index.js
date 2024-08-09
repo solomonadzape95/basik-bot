@@ -15,16 +15,16 @@ const url = process.env.BOT_URL;
 const bot = new TelegramBot(token);
 
 // Set webhook only when not in a Vercel environment
-// if (process.env.VERCEL_ENV === undefined) {
-//   bot
-//     .setWebHook(`${url}/api/index`)
-//     .then(() => {
-//       console.log("Webhook set successfully");
-//     })
-//     .catch((error) => {
-//       console.error("Failed to set Webhook:", error);
-//     });
-// }
+if (process.env.VERCEL_ENV === undefined) {
+  bot
+    .setWebHook(`${url}/api/index`)
+    .then(() => {
+      console.log("Webhook set successfully");
+    })
+    .catch((error) => {
+      console.error("Failed to set Webhook:", error);
+    });
+}
 
 // Setup bot command handlers
 bot.onText(/\/start/, handleStart(bot));
